@@ -141,7 +141,7 @@
     s += Math.min(3, (text.match(/!/g) || []).length);
     return s;
   }
-  function assemble(parts, EXTRA) { const DB = [].concat(...parts); for (const e of DB) { const a = EXTRA && EXTRA[e.id]; if (a) { e.kw = (e.kw || []).concat(a.kw || []); e.ex = (e.ex || []).concat(a.ex || []); } } return DB; }
+  function assemble(parts, EXTRA) { const DB = [].concat(...parts); for (const e of DB) { const a = EXTRA && EXTRA[e.id]; if (a) { e.kw = (e.kw || []).concat(a.kw || []); e.ex = (e.ex || []).concat(a.ex || []); if (a.v) e.v = (e.v || []).concat(a.v); } } return DB; }
   root.ENGINE = { assemble, norm, tokens, stemHit, phraseHit, conceptsOf, features, build, search, emotion, STOP, CONCEPTS };
   if (typeof module !== 'undefined') module.exports = root.ENGINE;
 })(typeof window !== 'undefined' ? window : globalThis);
