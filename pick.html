@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Подбор пакета по брифу</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ec;--surface:#fff;--ink:#15171c;--ink-2:#4b5160;--ink-3:#8a90a0;--line:#e6e1d6;--accent:#e4572e;--accent-d:#c9431d;--accent-soft:#fdeee8;--ok:#0f766e;--ok-soft:#e6f4f1;--warn:#92400e;--warn-soft:#fef3c7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:14px 16px 40px}
+h1{font-size:24px;font-weight:800;letter-spacing:-.02em}
+h1 span{color:var(--accent)}
+.sub{color:var(--ink-2);margin:4px 0 14px;max-width:720px}
+.grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:16px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-d);margin-bottom:8px}
+textarea,input[type=text]{width:100%;font:14px/1.5 'Onest',sans-serif;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink)}
+textarea{resize:vertical}
+#brief{min-height:150px}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--ink-2);margin:9px 0 3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:6px 0;cursor:pointer}
+.chk input{margin-top:4px;accent-color:var(--accent)}
+.chk small{display:block;color:var(--ink-3);font-size:12px}
+.btn{border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;font-size:14px;padding:11px 18px}
+.btn:hover{background:var(--accent-d)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.hero{border:2px solid var(--accent);background:var(--accent-soft);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.hero .tag{font-size:12px;font-weight:700;color:var(--accent-d);text-transform:uppercase;letter-spacing:.06em}
+.hero h3{font-size:26px;font-weight:800;line-height:1.15;margin:2px 0 8px}
+.hero h3 em{font-style:normal;color:var(--accent-d)}
+ul.t{list-style:none}
+ul.t li{padding:3px 0 3px 22px;position:relative;font-size:14px}
+ul.t li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:800}
+ul.w li::before{content:'!';color:var(--warn)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.bars{display:flex;gap:8px;margin:10px 0 0}
+.bar{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px}
+.bar b{display:block;font-size:14px}
+.bar.top{border-color:var(--accent);background:#fff}
+.bar i{display:block;height:6px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
+.bar i u{display:block;height:100%;background:var(--accent);border-radius:4px}
+#msg{min-height:300px;white-space:pre-wrap}
+.flag{background:var(--warn-soft);border-radius:10px;padding:8px 12px;margin:6px 0;font-size:14px}
+.hint{font-size:12px;color:var(--ink-3);margin-top:6px}
+.empty{color:var(--ink-3);padding:30px 10px;text-align:center}
+@media(max-width:900px){.grid,.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Подбор пакета <span>по брифу</span></h1>
+<p class="sub">Вставьте бриф клиента, проверьте поля и отметки. Справа появится пакет под этого клиента, причины выбора и готовое сообщение для чата.</p>
+<div class="grid">
+<div>
+ <div class="card">
+  <h2>1. Бриф клиента</h2>
+  <textarea id="brief" placeholder="Вставьте сюда ответы клиента на бриф целиком"></textarea>
+  <div class="hint">Поля ниже заполнятся сами, их можно поправить.</div>
+ </div>
+ <div class="card" style="margin-top:12px">
+  <h2>2. Данные клиента</h2>
+  <label class="f">Имя клиента</label><input type="text" id="name" placeholder="Василий">
+  <label class="f">Чем занимается / ниша</label><input type="text" id="niche">
+  <label class="f">Что продаёт сейчас (продукт, услуга)</label><input type="text" id="prod">
+  <label class="f">География</label><input type="text" id="geo" placeholder="Москва / вся Россия">
+  <div class="row2"><div><label class="f">Клиентов в месяц сейчас</label><input type="text" id="now"></div><div><label class="f">Желаемая выручка</label><input type="text" id="goal"></div></div>
+  <label class="f">Кто его клиент / боль</label><input type="text" id="aud">
+ </div>
+ <div class="card" style="margin-top:12px">
+  <h2>3. Отметки</h2>
+  <label class="chk"><input type="checkbox" id="local"><span>Принимает клиентов по адресу<small>салон, клиника, мастерская: важны карточки на картах и отзывы</small></span></label>
+  <label class="chk"><input type="checkbox" id="expert"><span>Эксперт, обучение, B2B, дорогая услуга<small>клиент выбирает долго, читает, сравнивает</small></span></label>
+  <label class="chk"><input type="checkbox" id="fast"><span>Ему важны быстрые заявки<small>«срочно», «надо продавать сейчас»</small></span></label>
+  <label class="chk"><input type="checkbox" id="tgbudget"><span>Готов платить за размещения в Telegram-каналах<small>это отдельный бюджет, в пакет не входит</small></span></label>
+  <label class="chk"><input type="checkbox" id="blog" checked><span>Готов публиковать статьи<small>читает статью в боте и нажимает «Опубликовать»</small></span></label>
+  <label class="chk"><input type="checkbox" id="ownsite"><span>Уже есть свой сайт<small>SEO подключаем только к сайту, который сделали мы</small></span></label>
+  <label class="chk"><input type="checkbox" id="skeptic"><span>Не верит в SEO<small>«сейчас всё делает ИИ», «не работает»</small></span></label>
+ </div>
+</div>
+<div id="out"><div class="card empty">Вставьте бриф слева, и здесь появится подбор.</div></div>
+</div>
+</div>
+<script>
+const PK={
+ s:{n:'Старт',p:5000,items:['Сайт на вашем домене и SEO-настройка','Юридический минимум (политика, согласия, cookie)','Тексты для карточек на Яндекс Картах, 2ГИС и Google','QR-плакат и 10 ответов на отзывы','Страница проекта со всеми материалами']},
+ t:{n:'Стандарт',p:7500,items:['Всё из «Старта»','Блог: от 1 статьи в неделю со 2-й недели','Углублённые Распаковка и Рекомендации в личном кабинете','Скрипты продаж, презентация и скрипт холодных сообщений']},
+ m:{n:'Максимум',p:8000,items:['Всё из «Стандарта»','Карта каналов для посевов в Telegram: подбираем и проверяем каналы вашей аудитории','2 статьи в неделю в первый месяц, дальше по 1','Размещения в каналах оплачиваются отдельно']}
+};
+const $=id=>document.getElementById(id);
+const IDS=['name','niche','prod','geo','now','goal','aud'];
+function blocks(t){return t.split(/\n\s*(?=\d{1,2}[.)]\s)/).map(b=>{const l=b.trim().split('\n');return{q:l[0],a:l.slice(1).join(' ').trim()}})}
+function val(re,t){const m=t.match(re);return m?m[1].trim():''}
+function parse(){
+ const t=$('brief').value;if(!t.trim())return;
+ const B=blocks(t);const pick=re=>{const b=B.find(x=>re.test(x.q));return b?(b.a||x2(b.q)):''};
+ const x2=q=>q.replace(/^\d+[.)]\s*/,'').replace(/^[^:?]*[:?]\s*/,'');
+ const set=(id,v)=>{if(v&&!$(id).dataset.edit)$(id).value=v.slice(0,160)};
+ set('niche',pick(/чем занимаетесь|сфера|ниша/i));
+ set('prod',pick(/услуг|продукт|предложен/i));
+ set('geo',pick(/город|регион|географ/i));
+ set('aud',pick(/портрет|боль|аудитор/i));
+ set('now',val(/Сколько сейчас клиентов[^:\n]*:\s*([^\n]+)/i,t));
+ set('goal',val(/Желаемая выручка[^:\n?]*[:?]\s*([^\n]+)/i,t));
+ const low=t.toLowerCase();
+ const has=re=>re.test(low);
+ const setc=(id,v)=>{if(!$(id).dataset.edit)$(id).checked=v};
+ setc('local',(has(/салон|клиник|стомат|барбер|ногт|массаж|автосервис|ремонт|студи|кафе|ресторан|парикмах|косметолог|юрист|нотариус|врач/)&&!has(/офиса нет|по всей россии|онлайн/)));
+ setc('expert',has(/тренер|консульт|эксперт|b2b|компани|обучен|курс|коуч|психолог|маркетолог|наставник|отдел продаж|бизнес/));
+ setc('fast',has(/срочно|быстр|сейчас продавать|сейчас важно|мне важно сейчас|нужны заявки скорее/));
+ setc('ownsite',has(/есть сайт|свой сайт|мой сайт|тильд|tilda/));
+ setc('skeptic',has(/не верю|не работает|seo не/));
+}
+function parseAndRender(){parse();render()}
+function score(){
+ const g=id=>$(id).checked;const s={s:0,t:1,m:0};const why={s:[],t:[],m:[]};
+ if(g('local')){s.s+=2;s.t+=1;why.s.push('клиенты находят вас по адресу: сильные карточки на картах и отзывы с QR-плаката работают именно на это');}
+ if(g('expert')){s.t+=3;s.m+=1;why.t.push('вашему клиенту нужно время, чтобы вам довериться: ему помогают статьи и материалы, которые отвечают на его вопросы');}
+ if(g('fast')){s.m+=3;why.m.push('вам важны быстрые заявки, а в «Максимуме» есть карта каналов для Telegram: подбираем и проверяем каналы вашей аудитории');}
+ if(g('tgbudget')){s.m+=2;why.m.push('вы готовы вкладываться в размещения, значит карта каналов будет использована');}
+ if(!g('blog')){s.t-=2;s.m-=2;s.s+=2;why.s.push('регулярно публиковать статьи вы не планируете, поэтому блог из старших пакетов пока лишний');}
+ if(g('ownsite')){why.t.push('у вас уже есть свой сайт: новый мы ставим на отдельный домен, старый не трогаем');}
+ return{s,why};
+}
+const cl=x=>x.replace(/\s+/g,' ').replace(/[\s.,;:]+$/,'').trim();const FEATS=()=>{const v=id=>cl($(id).value);return{name:v('name'),niche:v('niche'),prod:v('prod'),geo:v('geo'),now:v('now'),goal:v('goal'),aud:v('aud')}};
+function render(){
+ if(!$('brief').value.trim()&&!$('niche').value.trim()){$('out').innerHTML='<div class="card empty">Вставьте бриф слева, и здесь появится подбор.</div>';return}
+ const {s,why}=score();const f=FEATS();
+ const order=['s','t','m'].sort((a,b)=>s[b]-s[a]||(b==='t'?1:-1));
+ const win=order[0],alt=order[1];const P=PK[win];
+ const mx=Math.max(...Object.values(s),1);
+ const reasons=[];
+ if(f.goal)reasons.push(`Цель по брифу: ${f.goal}`+(f.now?` (сейчас ${f.now} клиентов в месяц)`:''));
+ why[win].forEach(x=>reasons.push(x[0].toUpperCase()+x.slice(1)));
+ if(win==='t'&&!why.t.length)reasons.push('Стандарт даёт блог и материалы для продаж: основа, на которой строится поток из поиска');
+ const geo=f.geo||'в вашем регионе';
+ const prodTxt='ваши услуги';
+ const items=P.items.map(x=>'• '+x).join('\n');
+ let extra='';
+ if(win==='m')extra='\nРазмещения в Telegram-каналах оплачиваются отдельно, результат по ним не гарантируется.';
+ if(win==='s'&&s.t>=s.s-1)extra='\nЕсли позже захотите блог и материалы для продаж, можно доплатить разницу до «Стандарта».';
+ const altTxt={s:'«Старт» (5 000 ₽)',t:'«Стандарт» (7 500 ₽)',m:'«Максимум» (8 000 ₽)'}[alt];
+ const num={s:1,t:2,m:3}[win];
+ const msg=`${f.name||'{имя}'}, упаковка принята, спасибо! 🙌 Дальше по плану, который мы описывали в начале (сначала упаковка, потом SEO): сделать так, чтобы вас находили в поиске сами.
+
+Сейчас у вас есть сайт, бот и гайд, но их видят те, кому вы сами отправили ссылку. SEO нужно, чтобы вас находили люди, которые ищут ${prodTxt}${f.geo?' ('+f.geo+')':''}, без платы за каждый клик.
+
+${f.goal?`По брифу вы хотите выйти на выручку ${f.goal[0].toLowerCase()+f.goal.slice(1)}${/мес/i.test(f.goal)?'':' в месяц'}. `:''}Для этого подойдёт «${P.n}» (${P.p.toLocaleString('ru-RU')} ₽, оплата один раз, без абонентской платы):
+${items}
+
+${reasons.slice(f.goal?1:0,3).map(x=>'— '+x).join('\n')}
+
+Мы гарантируем выполнение работ по списку. Позиции в поиске и число заявок гарантировать нельзя: так честно для любого SEO.${extra}
+
+Чтобы начать, напишите «домен ${num}». Если хотите сравнить с ${altTxt}, напишите, и подскажем, чем они отличаются.`.replace(/\n{3,}/g,'\n\n');
+ const flags=[];
+ if($('ownsite').checked)flags.push('У клиента есть свой сайт. SEO мы подключаем только к сайту, который сделали мы, старый не трогаем. Скажите об этом заранее, до выбора пакета.');
+ if($('fast').checked)flags.push('Клиенту нужны быстрые заявки. Не обещайте сроки и число заявок: честно скажите, что SEO даёт результат не мгновенно, а для быстрых заявок есть карта каналов, размещения платные.');
+ if($('skeptic').checked)flags.push('Клиент не верит в SEO. Не спорьте про «ИИ и поиск»: сошлитесь на то, что в пакете чёткий список работ, и дайте клиенту выбрать минимальный «Старт».');
+ flags.push('Не просите и не принимайте пароли в чате. Если клиент прислал, попросите сменить их.');
+ $('out').innerHTML=`
+ <div class="hero"><div class="tag">Подходит этому клиенту</div><h3>«${P.n}» <em>${P.p.toLocaleString('ru-RU')} ₽</em></h3>
+  <ul class="t">${reasons.slice(0,4).map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>
+  <div class="bars">${['s','t','m'].map(k=>`<div class="bar ${k===win?'top':''}"><b>${PK[k].n}</b>${PK[k].p.toLocaleString('ru-RU')} ₽<i><u style="width:${Math.max(6,Math.round(100*Math.max(s[k],0)/mx))}%"></u></i></div>`).join('')}</div>
+  <div class="hint">Запасной вариант: ${altTxt}. Клиент может сменить пакет, доплата только разница.</div>
+ </div>
+ <div class="cols">
+  <div class="card"><h2>Что входит</h2><ul class="t">${P.items.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul></div>
+  <div class="card"><h2>На что обратить внимание</h2>${flags.map(x=>'<div class="flag">'+esc(x)+'</div>').join('')}</div>
+ </div>
+ <div class="card"><h2>Готовое сообщение клиенту</h2>
+  <textarea id="msg" spellcheck="false">${esc(msg)}</textarea>
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cp">Скопировать сообщение</button><button class="btn ghost" id="rst">Сбросить отметки</button></div>
+  <div class="hint">Текст можно править прямо здесь. Проверьте поля в скобках {…} перед отправкой.</div></div>`;
+ $('cp').onclick=async()=>{try{await navigator.clipboard.writeText($('msg').value);$('cp').textContent='Скопировано ✓'}catch(e){$('msg').select();document.execCommand('copy');$('cp').textContent='Скопировано ✓'}setTimeout(()=>$('cp').textContent='Скопировать сообщение',1600)};
+ $('rst').onclick=()=>{['local','expert','fast','tgbudget','ownsite','skeptic'].forEach(i=>{$(i).checked=false;delete $(i).dataset.edit});$('blog').checked=true;parseAndRender()};
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+$('brief').addEventListener('input',parseAndRender);
+IDS.forEach(i=>$(i).addEventListener('input',()=>{$(i).dataset.edit=1;render()}));
+['local','expert','fast','tgbudget','blog','ownsite','skeptic'].forEach(i=>$(i).addEventListener('change',()=>{$(i).dataset.edit=1;render()}));
+</script>
+</body>
+</html>
