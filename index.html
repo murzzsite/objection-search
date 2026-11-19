@@ -208,9 +208,10 @@ footer{color:var(--ink-3);font-size:12px;padding:0 0 40px}
 <script src="engine.js"></script>
 <script src="kb_hand.js"></script>
 <script src="kb_import.js"></script>
+<script src="kb_extra.js"></script>
 <script>
 /* ===== БАЗА: kb_hand.js + kb_import.js, движок: engine.js ===== */
-const DB = IMPORT.concat(HAND);
+const DB = ENGINE.assemble([IMPORT, HAND, HAND2], EXTRA);
 const CAT_ORDER = ['Конфликт и жалобы','Деньги и обещания','Нет заявок и сроки','Связь и поддержка','Акт и документы','Материалы: гайд, бот, сайт','Биржа лидов','Допродажи и SEO','SEO: результат и сроки','SEO: перед покупкой','SEO: пакеты и цена','SEO: домен и перенос','SEO: статьи и блог','SEO: техника','Деньги и документы','Прочее'];
 ENGINE.build(DB);
 

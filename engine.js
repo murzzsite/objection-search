@@ -141,6 +141,7 @@
     s += Math.min(3, (text.match(/!/g) || []).length);
     return s;
   }
-  root.ENGINE = { norm, tokens, stemHit, phraseHit, conceptsOf, features, build, search, emotion, STOP, CONCEPTS };
+  function assemble(parts, EXTRA) { const DB = [].concat(...parts); for (const e of DB) { const a = EXTRA && EXTRA[e.id]; if (a) { e.kw = (e.kw || []).concat(a.kw || []); e.ex = (e.ex || []).concat(a.ex || []); } } return DB; }
+  root.ENGINE = { assemble, norm, tokens, stemHit, phraseHit, conceptsOf, features, build, search, emotion, STOP, CONCEPTS };
   if (typeof module !== 'undefined') module.exports = root.ENGINE;
 })(typeof window !== 'undefined' ? window : globalThis);
