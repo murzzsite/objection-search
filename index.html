@@ -7,18 +7,12 @@
 <title>Отработка возражений 2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f5f2ec; --surface:#ffffff; --ink:#15171c; --ink-2:#4b5160; --ink-3:#8a90a0;
-  --line:#e6e1d6; --line-2:#efebe2;
-  --accent:#e4572e; --accent-d:#c9431d; --accent-soft:#fdeee8;
-  --ok:#0f766e; --ok-soft:#e6f4f1; --bad:#b42318; --bad-soft:#fdecea; --warn:#92400e; --warn-soft:#fef3c7;
-  --mark:#ffe08a;
-}
+:root{--bg:#eef2f9;--surface:#ffffff;--ink:#0f172a;--ink-2:#475569;--ink-3:#94a3b8;--line:#e2e8f0;--line-2:#eef2f9;--accent:#2563eb;--accent-d:#1d4ed8;--accent-soft:#dbeafe;--ok:#1d4ed8;--ok-soft:#dbeafe;--bad:#1d4ed8;--bad-soft:#dbeafe;--warn:#1d4ed8;--warn-soft:#dbeafe;--mark:#bfdbfe;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
 button{font-family:inherit;cursor:pointer}
 .wrap{max-width:980px;margin:0 auto;padding:0 16px}
 
@@ -41,9 +35,9 @@ button{font-family:inherit;cursor:pointer}
 .frow{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap}
 .frow label{font-weight:700;font-size:14px}
 .name{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
-.name input{border:1px solid var(--line);border-radius:10px;padding:7px 11px;font:500 14px 'Onest',sans-serif;width:150px;background:var(--bg)}
+.name input{border:1px solid var(--line);border-radius:10px;padding:7px 11px;font:500 14px 'Inter',sans-serif;width:150px;background:var(--bg)}
 .name input:focus,.q:focus{outline:2px solid var(--accent);outline-offset:1px;background:#fff}
-.q{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:500 16px/1.5 'Onest',sans-serif;background:var(--bg);color:var(--ink)}
+.q{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:500 16px/1.5 'Inter',sans-serif;background:var(--bg);color:var(--ink)}
 .q::placeholder{color:var(--ink-3)}
 .fbtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
 .btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;font-size:14px;background:var(--ink);color:#fff}
@@ -55,15 +49,15 @@ button{font-family:inherit;cursor:pointer}
 .kbd{margin-left:auto;font-size:12px;color:var(--ink-3)}
 .examples{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .examples span{font-size:12px;color:var(--ink-3)}
-.ex{font-size:12.5px;border:1px dashed #cfc8b8;background:transparent;border-radius:99px;padding:5px 12px;color:var(--ink-2)}
+.ex{font-size:12.5px;border:1px dashed #cbd5e1;background:transparent;border-radius:99px;padding:5px 12px;color:var(--ink-2)}
 .ex:hover{border-style:solid;color:var(--ink);background:var(--bg)}
 
 /* signals */
 .signals{margin-top:16px;display:flex;flex-direction:column;gap:8px}
 .sig{border-radius:12px;padding:11px 14px;font-size:14px;display:flex;gap:10px;align-items:flex-start}
-.sig.hot{background:var(--bad-soft);color:#7a1a12}
+.sig.hot{background:var(--bad-soft);color:#1d4ed8}
 .sig.multi{background:var(--warn-soft);color:var(--warn)}
-.sig.none{background:#fff;border:1px dashed #cfc8b8;color:var(--ink-2)}
+.sig.none{background:#fff;border:1px dashed #cbd5e1;color:var(--ink-2)}
 .sig b{font-weight:700}
 .quote{font-size:14px;line-height:1.7;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:var(--ink-2);white-space:pre-wrap}
 .quote mark{background:var(--mark);color:var(--ink);border-radius:3px;padding:0 2px}
@@ -95,7 +89,7 @@ button{font-family:inherit;cursor:pointer}
 .tip h5{font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
 .tip ul{padding-left:18px}
 .tip.do{background:var(--ok-soft);color:#0b4f49}
-.tip.dont{background:var(--bad-soft);color:#7a1a12}
+.tip.dont{background:var(--bad-soft);color:#1d4ed8}
 .tip.esc{background:var(--warn-soft);color:var(--warn)}
 .tglt{margin-top:12px;background:none;border:0;color:var(--ink-2);font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:3px;padding:0}
 
@@ -113,7 +107,7 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:640px){.clist{grid-template-columns:1fr}.top h1{font-size:24px}.q{font-size:16px}}
 
 /* fallback panel */
-.fallback{margin-top:14px;background:var(--surface);border:1px dashed #cfc8b8;border-radius:16px;padding:14px 16px;font-size:14px;color:var(--ink-2)}
+.fallback{margin-top:14px;background:var(--surface);border:1px dashed #cbd5e1;border-radius:16px;padding:14px 16px;font-size:14px;color:var(--ink-2)}
 .fallback b{color:var(--ink)}
 
 .princ{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;margin-bottom:12px}
@@ -121,7 +115,7 @@ button{font-family:inherit;cursor:pointer}
 .princ summary::-webkit-details-marker{display:none}
 .princ summary::before{content:'▸ ';color:var(--accent)}
 .princ[open] summary::before{content:'▾ '}
-.princ pre{white-space:pre-wrap;font:14px/1.6 'Onest',sans-serif;padding:0 18px 16px;color:var(--ink-2)}
+.princ pre{white-space:pre-wrap;font:14px/1.6 'Inter',sans-serif;padding:0 18px 16px;color:var(--ink-2)}
 .vp{white-space:normal;text-align:left}
 /* composer */
 .composer{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -12px 30px -16px rgba(21,23,28,.3);display:none}
@@ -133,7 +127,7 @@ button{font-family:inherit;cursor:pointer}
 .op{font-size:12px;border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:4px 10px;color:var(--ink-2)}
 .op:hover{border-color:var(--ink-3)}
 .composer.min .dtext,.composer.min .dbtn,.composer.min .openers{display:none}
-.dtext{width:100%;height:96px;resize:vertical;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:500 14px/1.55 'Onest',sans-serif;background:var(--bg)}
+.dtext{width:100%;height:96px;resize:vertical;margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:500 14px/1.55 'Inter',sans-serif;background:var(--bg)}
 .dtext:focus{outline:2px solid var(--accent);background:#fff}
 .dbtn{display:flex;gap:8px;margin-top:8px}
 
@@ -141,6 +135,7 @@ button{font-family:inherit;cursor:pointer}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.warn{background:var(--warn)}
 footer{color:var(--ink-3);font-size:12px;padding:0 0 40px}
+.examples{display:none!important}
 </style>
 </head>
 <body>
@@ -149,9 +144,6 @@ footer{color:var(--ink-3);font-size:12px;padding:0 0 40px}
     <div>
       <h1>Отработка возражений <span>2</span></h1>
       <p>Вставьте сообщение клиента — найдём подходящий ответ. Дальше поправьте текст под ситуацию и скопируйте.</p>
-    </div>
-    <div class="toplinks">
-      <a href="https://murzzsite.github.io/seo-funnel-cards/" target="_blank" rel="noopener">Отработка возражений 1 — SEO и домен ↗</a>
     </div>
   </header>
 
@@ -205,10 +197,10 @@ footer{color:var(--ink-3);font-size:12px;padding:0 0 40px}
 </div>
 <div class="toast" id="toast"></div>
 
-<script src="engine.js?v=20261120"></script>
-<script src="kb_hand.js?v=20261120"></script>
-<script src="kb_import.js?v=20261120"></script>
-<script src="kb_extra.js?v=20261120"></script>
+<script src="engine.js?v=20261121"></script>
+<script src="kb_hand.js?v=20261121"></script>
+<script src="kb_import.js?v=20261121"></script>
+<script src="kb_extra.js?v=20261121"></script>
 <script>
 /* ===== БАЗА: kb_hand.js + kb_import.js, движок: engine.js ===== */
 const DB = ENGINE.assemble([IMPORT, HAND, HAND2], EXTRA);
