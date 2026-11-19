@@ -54,7 +54,7 @@ ul.w li::before{content:'!';color:var(--warn)}
 <body>
 <div class="wrap">
 <h1>Подбор пакета <span>по брифу</span></h1>
-<p class="sub">Вставьте бриф клиента, проверьте поля и отметки. Справа появится пакет под этого клиента, причины выбора и готовое сообщение для чата.</p>
+<p class="sub">Вставьте бриф клиента, проверьте поля и отметки. Появится пакет под этого клиента, причины выбора и готовое сообщение для чата.</p>
 <div class="grid">
 <div>
  <div class="card">
@@ -82,7 +82,7 @@ ul.w li::before{content:'!';color:var(--warn)}
   <label class="chk"><input type="checkbox" id="skeptic"><span>Не верит в SEO<small>«сейчас всё делает ИИ», «не работает»</small></span></label>
  </div>
 </div>
-<div id="out"><div class="card empty">Вставьте бриф слева, и здесь появится подбор.</div></div>
+<div id="out"><div class="card empty">Вставьте бриф, и здесь появится подбор.</div></div>
 </div>
 </div>
 <script>
@@ -128,13 +128,13 @@ function score(){
 }
 const cl=x=>x.replace(/\s+/g,' ').replace(/[\s.,;:]+$/,'').trim();const FEATS=()=>{const v=id=>cl($(id).value);return{name:v('name'),niche:v('niche'),prod:v('prod'),geo:v('geo'),now:v('now'),goal:v('goal'),aud:v('aud')}};
 function render(){
- if(!$('brief').value.trim()&&!$('niche').value.trim()){$('out').innerHTML='<div class="card empty">Вставьте бриф слева, и здесь появится подбор.</div>';return}
+ if(!$('brief').value.trim()&&!$('niche').value.trim()){$('out').innerHTML='<div class="card empty">Вставьте бриф, и здесь появится подбор.</div>';return}
  const {s,why}=score();const f=FEATS();
  const order=['s','t','m'].sort((a,b)=>s[b]-s[a]||(b==='t'?1:-1));
  const win=order[0],alt=order[1];const P=PK[win];
  const mx=Math.max(...Object.values(s),1);
  const reasons=[];
- if(f.goal)reasons.push(`Цель по брифу: ${f.goal}`+(f.now?` (сейчас ${f.now} клиентов в месяц)`:''));
+ if(f.goal)reasons.push(`Цель по брифу: ${f.goal}`+(f.now?` (сейчас клиентов в месяц: ${f.now})`:''));
  why[win].forEach(x=>reasons.push(x[0].toUpperCase()+x.slice(1)));
  if(win==='t'&&!why.t.length)reasons.push('Стандарт даёт блог и материалы для продаж: основа, на которой строится поток из поиска');
  const geo=f.geo||'в вашем регионе';
@@ -145,16 +145,16 @@ function render(){
  if(win==='s'&&s.t>=s.s-1)extra='\nЕсли позже захотите блог и материалы для продаж, можно доплатить разницу до «Стандарта».';
  const altTxt={s:'«Старт» (5 000 ₽)',t:'«Стандарт» (7 500 ₽)',m:'«Максимум» (8 000 ₽)'}[alt];
  const num={s:1,t:2,m:3}[win];
- const msg=`${f.name||'{имя}'}, упаковка принята, спасибо! 🙌 Дальше по плану, который мы описывали в начале (сначала упаковка, потом SEO): сделать так, чтобы вас находили в поиске сами.
+ const msg=`${f.name||'{имя}'}, помните, в начале мы писали, как пойдёт работа? Первый шаг, «Упаковка», готов, дошли до второго: SEO.
 
-Сейчас у вас есть сайт, бот и гайд, но их видят те, кому вы сами отправили ссылку. SEO нужно, чтобы вас находили люди, которые ищут ${prodTxt}${f.geo?' ('+f.geo+')':''}, без платы за каждый клик.
+Сейчас у вас есть сайт, бот и гайд, но их видят в основном те, кому вы сами отправили ссылку. SEO нужно, чтобы вас находили люди, которые ищут ${prodTxt}${f.geo?' ('+f.geo+')':''}, без платы за каждый клик.
 
 ${f.goal?`По брифу вы хотите выйти на выручку ${f.goal[0].toLowerCase()+f.goal.slice(1)}${/мес/i.test(f.goal)?'':' в месяц'}. `:''}Для этого подойдёт «${P.n}» (${P.p.toLocaleString('ru-RU')} ₽, оплата один раз, без абонентской платы):
 ${items}
 
 ${reasons.slice(f.goal?1:0,3).map(x=>'— '+x).join('\n')}
 
-Мы гарантируем выполнение работ по списку. Позиции в поиске и число заявок гарантировать нельзя: так честно для любого SEO.${extra}
+Что мы гарантируем: выполнение работ по списку. Что не гарантируем: конкретные позиции в поиске и число заявок, это зависит от поисковиков и от вашей ниши. Подробнее о гарантии в видео, которое мы присылали в чат, минуты 12:08–13:02.${extra}
 
 Чтобы начать, напишите «домен ${num}». Если хотите сравнить с ${altTxt}, напишите, и подскажем, чем они отличаются.`.replace(/\n{3,}/g,'\n\n');
  const flags=[];
